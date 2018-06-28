@@ -101,4 +101,4 @@ exit
 
 Once that you have your tiles exported in a folder directory structure, you can use/view the generated raster tiles using various JavaScript mapping libraries. OpenLayers can handle custom projections directly, and Leaflet with the [Proj4Leafletplugin](https://kartena.github.io/Proj4Leaflet/). 
 
-[OpenLayers viewer demo of antarctica basemap in polar projection EPSG:3031](https://tileserver.ingmapping.com/osm_antarctica/index.html)
+[OpenLayers demo viewer of antarctica basemap in polar projection EPSG:3031](https://tileserver.ingmapping.com/osm_antarctica/index.html)
