@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Polar Viewer</title>
+		<meta charset="utf-8" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<style type="text/css">
+		html, body, #map {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			font-family: sans-serif;
+		}
+
+		.olControlAttribution {
+			position: absolute;
+			bottom: 5px !important;
+			left: 5px !important;
+			width: 183px;
+		}
+
+		.time {
+			position: absolute;
+			bottom: 30px; !important;
+			left: 5px !important;
+			z-index: 9999;
+			font-size: smaller;
+		}
+
+		.olControlAttribution, .time {
+			background: white;
+			opacity: 0.3;
+			padding: 2px 6px;
+
+			z-index: 9999;
+		}
+
+		.olControlScaleLine {
+			background: white;
+			opacity: 0.3;
+
+			z-index: 9999;
+
+			position: absolute;
+			bottom: 10px !important;
+			right: 10px !important;
+			left: auto !important;
+
+			padding: 5px 10px;
+		}
+
+		.olControlAttribution:hover, .olControlScaleLine:hover, .time:hover {
+			opacity: 0.8;
+		}
+
+		a {
+			color: black;
+		}
+
+
+		#info {
+			background-color: white;
+			
+			padding: 5px;
+			border: 2px solid red;
+			
+			position: absolute;
+			z-index: 10000;
+			
+			bottom: 10px;
+			right: 10px;
+			width: 600px;
+		}
+
+		#info strong {
+			display: block;
+			float: left;
+			width: 100px;
+		}
+
+		#info span {
+			display: block;
+			float: left;
+		}
+
+		#info br,
+		#info h2 {
+			clear: both;
+		}
+		</style>
+		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/proj4js/1.1.0/proj4js-compressed.js"></script>
+		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/openlayers/2.12/OpenLayers.js"></script>
+	</head>
+	<body>
+		<div id="map">
+			<div class="time">Last Update (of all Tiles): ###TIME###</div>
+		</div>
+
+		<script type="text/javascript">
+		Proj4js.defs["EPSG:4326"] = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs";
+		Proj4js.defs["EPSG:3412"] = "+proj=stere +lat_0=-90 +lat_ts=-70 +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378273 +b=6356889.449 +units=m +no_defs";
+		Proj4js.defs["EPSG:900913"] = "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs";
+
+		var map = new OpenLayers.Map('map', {
+			controls: [
+				new OpenLayers.Control.Navigation(),
+				new OpenLayers.Control.PanZoomBar(),
+				new OpenLayers.Control.Attribution(),
+				new OpenLayers.Control.LayerSwitcher(),
+				new OpenLayers.Control.ScaleLine(),
+				new OpenLayers.Control.Permalink({
+					anchor: true
+				})
+			],
+
+			projection: "EPSG:3412",
+			displayProjection: "EPSG:4326"
+		});
+
+		var tiles = new OpenLayers.Layer.XYZ(
+			'Polar XYZ',
+			'${z}/${x}/${y}.png',
+			{
+				projection: 'EPSG:3412',
+				maxExtent: [-3000000,-3000000,3000000,3000000],
+				attribution: '© <a href="http://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+				numZoomLevels: 19,
+				transitionEffect: 'resize'
+			}
+		)
+
+		map.addLayer(tiles);
+
+		var markers = new OpenLayers.Layer.Vector("Markers", {
+			projection: 'EPSG:4326',
+			strategies: [new OpenLayers.Strategy.Fixed()],
+				protocol: new OpenLayers.Protocol.HTTP({
+				url: "interesting.json",
+				format: new OpenLayers.Format.GeoJSON()
+			})
+		});
+		map.addLayer(markers);
+
+		var featctl = new OpenLayers.Control.SelectFeature(markers);
+		map.addControl(featctl);
+		featctl.activate();
+
+		featctl.events.register('featurehighlighted', this, function(e) {
+			var
+				pt = e.feature.geometry,
+				ll = new OpenLayers.LonLat(pt.x, pt.y);
+
+			map.setCenter(ll, 11);
+		});
+
+		map.events.register('zoomend', this, function() {
+			markers.setVisibility(map.zoom < 8);
+		});
+
+		if(!map.getCenter())
+			map.setCenter(new OpenLayers.LonLat(0, 0)/* despite the class name, these are in EPSG:3031, so 0/0 is actually the pole */, 1);
+
+		</script>
+	</body>
+</html>
