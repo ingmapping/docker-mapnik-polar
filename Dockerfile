@@ -60,6 +60,8 @@ RUN chmod a+rx /docker-entrypoint.sh
 
 COPY ./osm-antarctica-3031.xml /root/src/mapnik-stylesheets-polar/osm-antarctica-3031.xml
 COPY ./osm-antarctica-3412.xml /root/src/mapnik-stylesheets-polar/osm-antarctica-3412.xml
+COPY ./northpole-3411.xml /root/src/mapnik-stylesheets-polar/northpole-3411.xml
+COPY ./northpole-3575.xml /root/src/mapnik-stylesheets-polar/northpole-3575.xml
 COPY ./render-polar-tiles-3031.py /root/src/mapnik-stylesheets-polar/render-polar-tiles-3031.py
 COPY ./render-polar-tiles-3412.py /root/src/mapnik-stylesheets-polar/render-polar-tiles-3412.py
 COPY ./render-polar-tiles-3411.py /root/src/mapnik-stylesheets-polar/render-polar-tiles-3411.py
