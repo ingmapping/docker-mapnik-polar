@@ -62,8 +62,12 @@ COPY ./osm-antarctica-3031.xml /root/src/mapnik-stylesheets-polar/osm-antarctica
 COPY ./osm-antarctica-3412.xml /root/src/mapnik-stylesheets-polar/osm-antarctica-3412.xml
 COPY ./render-polar-tiles-3031.py /root/src/mapnik-stylesheets-polar/render-polar-tiles-3031.py
 COPY ./render-polar-tiles-3412.py /root/src/mapnik-stylesheets-polar/render-polar-tiles-3412.py
+COPY ./render-polar-tiles-3411.py /root/src/mapnik-stylesheets-polar/render-polar-tiles-3411.py
+COPY ./render-polar-tiles-3575.py /root/src/mapnik-stylesheets-polar/render-polar-tiles-3575.py
 COPY ./view-3031.html /root/src/mapnik-stylesheets-polar/view-3031.html
 COPY ./view-3412.html /root/src/mapnik-stylesheets-polar/view-3412.html
+COPY ./view-3411.html /root/src/mapnik-stylesheets-polar/view-3411.html
+COPY ./view-3575.html /root/src/mapnik-stylesheets-polar/view-3575.html
 
 ENV PGPASSWORD=mysecretpassword 
 ENV PGUSER=postgres
