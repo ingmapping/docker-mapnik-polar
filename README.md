@@ -97,7 +97,7 @@ rm -rf tiles-3412
 exit
 ```
 
-## How to use/view your generated openstreets-nl tiles
+## How to use/view your generated polar tiles
 
 Once that you have your tiles exported in a folder directory structure, you can use/view the generated raster tiles using various JavaScript mapping libraries. OpenLayers can handle custom projections directly, and Leaflet with the [Proj4Leafletplugin](https://kartena.github.io/Proj4Leaflet/). 
 
