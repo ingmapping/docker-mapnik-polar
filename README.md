@@ -13,7 +13,7 @@ This project is part of an internship assignment which aimed at creating tiled b
 
 Due to the position of Antarctica around the South Pole the usual map web map projections e.g. [Web Mercator](https://epsg.io/3857) show Antarctica rather distorted. This project can help you if you want to generate raster tiles of the Antartica based on OpenStreetMap and Natural Earth data in custom polar projection ([EPSG:3031](https://epsg.io/3031)) or ([EPSG:3412](https://epsg.io/3412)) with Mapnik inside a docker container. Tiles can also be generated with Natural Earth shapefiles for the north pole in custom polar projection ([EPSG:3575](https://epsg.io/3031)) or ([EPSG:3411](https://epsg.io/3411)).
 
-The polar basemap and corresponding style was based on the [mapnik-stylesheets-polar](https://github.com/ingmapping/openstreets-nl-tilemill/) project in which OpenStreetMap/Natural Earth data was used to render antarctica tiles with mapnik in the [WGS 84 / Antarctic Polar Stereographic projection](https://epsg.io/3031).
+The polar basemap and corresponding style was based on the [mapnik-stylesheets-polar](https://github.com/ingmapping/mapnik-stylesheets-polar/) project in which OpenStreetMap/Natural Earth data was used to render antarctica tiles with mapnik in the [WGS 84 / Antarctic Polar Stereographic projection](https://epsg.io/3031).
 
 This project was inspired from https://github.com/MaZderMind/mapnik-stylesheets-polar which is the development location of the Mapnik XML stylesheets powering http://polar.openstreetmap.de/. The website is not working anymore since the OSM Antarctica Map is currently unmaintained. 
 
