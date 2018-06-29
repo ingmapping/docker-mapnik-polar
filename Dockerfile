@@ -1,14 +1,3 @@
-# cd ~/Documents/docker-mapnik-polar
-# docker build -t docker-mapnik-polar .
-
-####
-# docker pull ingmapping/postgis
-# docker network create foo
-# docker run --name postgis -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DBNAME=antarctica -p 5432:5432 --net foo -d ingmapping/postgis
-# docker start postgis
-# docker build -t docker-mapnik-polar . 
-# docker run -i -t --rm --name docker-mapnik-polar --net foo -v /nobackup/users/beukelaa/data/:/data docker-mapnik-polar
-
 FROM ubuntu:16.04
 MAINTAINER ingmapping <contact@ingmapping.com>
 
