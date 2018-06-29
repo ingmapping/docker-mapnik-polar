@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Polar Viewer - EPSG3575</title>
+		<title>Polar Viewer - EPSG:3575</title>
 		<meta charset="utf-8" />
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -124,7 +124,7 @@
 			'${z}/${x}/${y}.png',
 			{
 				projection: 'EPSG:3575',
-				maxExtent: [-13000000,-13000000,13000000,13000000],
+				maxExtent: [-50000000,-50000000,50000000,50000000],
 				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | <a href="https://github.com/ingmapping/docker-mapnik-polar/"> docker-mapnik-polar </a> project - <a href="https://www.ingmapping.com">ingmapping.com</a>',
 				numZoomLevels: 19,
 				transitionEffect: 'resize'
@@ -135,7 +135,7 @@
 
 
 		if(!map.getCenter())
-			map.setCenter(new OpenLayers.LonLat(0, 0)/* despite the class name, these are in EPSG:3575, so 0/0 is actually the pole */, 4);
+			map.setCenter(new OpenLayers.LonLat(0, 0)/* despite the class name, these are in EPSG:3575, so 0/0 is actually the pole */, 1);
 
 		</script>
 	</body>
