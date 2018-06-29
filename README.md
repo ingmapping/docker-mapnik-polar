@@ -52,7 +52,7 @@ docker network create foo
 To inspect the created network:
 
 ```
-docker inspect network foo
+docker network inspect foo
 ```
 
 ## How to set up docker-mapnik-polar
