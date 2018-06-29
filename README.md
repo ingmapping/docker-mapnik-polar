@@ -32,7 +32,13 @@ or from source:
 docker build -t ingmapping/postgis git://github.com/ingmapping/docker-postgis
 ```
 
-After buidling the postgis image, run the postgis container:
+After buidling the postgis image, first create a network (e.g. "foo") to be able to link both containers (docker-postgis & docker-mapnik-polar): 
+
+```
+docker network create foo
+```
+
+Then, run the postgis container:
 
 ```
 docker run --name postgis -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DBNAME=antarctica -p 5432:5432 --net foo -d ingmapping/postgis
@@ -41,12 +47,6 @@ You might need to start the postgis container with the following command:
 
 ```
 docker start postgis
-```
-
-Don't forget to create a network (e.g. "foo") to link both containers (docker-postgis & docker-mapnik-polar):
-
-```
-docker network create foo
 ```
 
 To inspect the created network:
