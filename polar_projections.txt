@@ -1,0 +1,67 @@
+List of polar projections used for this docker-mapnik-polar project
+
+1) WGS 84 / Antarctic Polar Stereographic - EPSG:3031
+
+https://epsg.io/3031
+http://spatialreference.org/ref/epsg/wgs-84-antarctic-polar-stereographic/
+https://nsidc.org/data/atlas/epsg_3031.html
+
+The area of use for this projection is the Antarctica.
+
+Configuration settings for the viewer:
+Proj4js.defs["EPSG:3031"] = "+proj=stere +lat_0=-90 +lat_ts=-71 +lon_0=0 +k=1 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs";
+OriginX: -3000000
+OriginY: 3000000
+Chosen Map Extent: -3000000, -3000000, 3000000, 30000000 #Based on zoom to antarctica
+Scale: 6000000  #From originX to origin Y 
+Resolution: 23437.5  #((-OriginX)*2)/256 where 256 is the tile size
+
+2) NSIDC Sea Ice Polar Stereographic South - EPSG:3412
+
+https://epsg.io/3412
+http://www.spatialreference.org/ref/epsg/nsidc-sea-ice-polar-stereographic-south/
+https://nsidc.org/data/atlas/epsg_3412.html
+
+The area of use is the Southern hemisphere - south of 60°S onshore and offshore - Antarctica. 
+
+Configuration settings for the viewer:
+Proj4js.defs["EPSG:3412"] = "+proj=stere +lat_0=-90 +lat_ts=-70 +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378273 +b=6356889.449 +units=m +no_defs";
+OriginX: -3000000
+OriginY: 3000000
+Chosen Map Extent: -3000000, -3000000, 3000000, 30000000 #Based on zoom to antarctica
+Scale: 6000000 #From originX to origin Y 
+Resolution: 23437.5  #((-OriginX)*2)/256 where 256 is the tile size
+
+3) WGS 84 / North Pole LAEA Europe - EPSG:3575
+
+https://epsg.io/3575
+http://spatialreference.org/ref/epsg/wgs-84-north-pole-laea-europe/
+https://nsidc.org/data/atlas/epsg_3575.html
+
+The area of use is the Northern hemisphere - north of 45°N, including Arctic.
+
+Configuration settings for the viewer:
+Proj4js.defs["EPSG:3575"] = "+proj=laea +lat_0=90 +lon_0=10 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs";
+OriginX: -5000000
+OriginY: 5000000
+Chosen Map Extent: -5000000, -5000000, 5000000, 50000000 #Based on zoom to sea ice extent (max) 
+Scale: 10000000 #From originX to origin Y 
+Resolution: 39062.5  #((-OriginX)*2)/256 where 256 is the tile size
+
+4) NSIDC Sea Ice Polar Stereographic North - EPSG:3411
+
+https://epsg.io/3411
+http://www.spatialreference.org/ref/epsg/nsidc-sea-ice-polar-stereographic-north/
+https://nsidc.org/data/atlas/epsg_3411.html
+
+The are of use is the Northern hemisphere - north of 60°N onshore and offshore, including Arctic.
+
+Configuration settings for the viewer:
+Proj4js.defs["EPSG:3411"] = "+proj=stere +lat_0=90 +lat_ts=70 +lon_0=-45 +k=1 +x_0=0 +y_0=0 +a=6378273 +b=6356889.449 +units=m +no_defs";
+OriginX: -12400000
+OriginY: 12400000
+Chosen Map Extent: -12400000, -12400000, 12400000, 12400000 #Based on full extent of the projection 
+Scale: 24800000 #From originX to origin Y 
+Resolution: 96875  #((-OriginX)*2)/256 where 256 is the tile size
+
+
