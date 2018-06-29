@@ -9,7 +9,9 @@ Related project: [mapnik-stylesheets-polar](https://github.com/ingmapping/mapnik
 
 ## Introduction  
 
-This project is part of an internship assignment which aimed at creating tiled basemaps for the KNMI geospatial infrastructure. The data and tools used to create the antarctica basemap are open-source. Therefore, this project is reproducible for everyone who wants to create simple basemaps (raster tiled basemaps) from free vector data! Due to the position of Antarctica around the South Pole the usual map web map projections e.g. [Web Mercator](https://epsg.io/3857) show Antarctica rather distorted. This project can help you if you want to generate raster tiles of the Antartica based on OpenStreetMap and Natural Earth data in custom polar projection ([EPSG:3031](https://epsg.io/3031) or [EPSG:3412](https://epsg.io/3412)) with Mapnik inside a docker container. 
+This project is part of an internship assignment which aimed at creating tiled basemaps for the KNMI geospatial infrastructure. The data and tools used to create the antarctica basemap are open-source. Therefore, this project is reproducible for everyone who wants to create simple basemaps (raster tiled basemaps) from free vector data! 
+
+Due to the position of Antarctica around the South Pole the usual map web map projections e.g. [Web Mercator](https://epsg.io/3857) show Antarctica rather distorted. This project can help you if you want to generate raster tiles of the Antartica based on OpenStreetMap and Natural Earth data in custom polar projection ([EPSG:3031](https://epsg.io/3031)) or ([EPSG:3412](https://epsg.io/3412)) with Mapnik inside a docker container. Tiles can also be generated with Natural Earth shapefiles for the north pole in custom polar projection ([EPSG:3575](https://epsg.io/3031)) or ([EPSG:3411](https://epsg.io/3411)).
 
 The polar basemap and corresponding style was based on the [mapnik-stylesheets-polar](https://github.com/ingmapping/openstreets-nl-tilemill/) project in which OpenStreetMap/Natural Earth data was used to render antarctica tiles with mapnik in the [WGS 84 / Antarctic Polar Stereographic projection](https://epsg.io/3031).
 
@@ -80,10 +82,16 @@ The above command will generate antarctica tiles for zoomlevel 0 to 7 for projec
 ```
 docker run -i -t --rm --name docker-mapnik-polar --net foo -v /nobackup/users/beukelaa/data/:/data -e MIN_ZOOM=1 -e MAX_ZOOM=6 -e SRS=3412 ingmapping/docker-mapnik-polar
 ```
-If you want to generate antarctica tiles for another polar projection ([EPSG:3031](https://epsg.io/3031)), then you can use the environementvariable "SRS". The following command generates antarctica tiles for zoom levels 0 to 6 in polar projection ([EPSG:3031](https://epsg.io/3031)):
+If you want to generate antarctica tiles for another polar projection ([EPSG:3031](https://epsg.io/3031)), then you can use the environment variable "SRS". The following command generates antarctica tiles for zoom levels 0 to 6 in polar projection ([EPSG:3031](https://epsg.io/3031)):
 
 ```
 docker run -i -t --rm --name docker-mapnik-polar --net foo -v /nobackup/users/beukelaa/data/:/data -e MAX_ZOOM=6 -e SRS=3031 ingmapping/docker-mapnik-polar
+```
+
+If you want to generate tiles for the northpole, with custom polar projection ([EPSG:3575](https://epsg.io/3031)) or ([EPSG:3411](https://epsg.io/3411)), then you can use the environment variable "STYLESHEET". Linking the container to postgis is not needed since only shapefiles are used for the northpole style. The following command generates north pole tiles for zoom levels 0 to 6 in polar projection ([EPSG:3411](https://epsg.io/3411)):
+
+```
+docker run -i -t --rm --name docker-mapnik-polar -v /nobackup/users/beukelaa/data/:/data -e MAX_ZOOM=6 -e STYLESHEET=northpole -e SRS=3411 ingmapping/docker-mapnik-polar
 ```
 
 ## How to remove your exported tiles with permission problems: 
