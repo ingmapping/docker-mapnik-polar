@@ -19,16 +19,22 @@ try:
 except ImportError:
     cairo_exists = False
 
+    SRS = int(os.environ['SRS'])
+
+    SRS = os.getenv("SRS")
+    p={"3031":{"scale":6000000},"3412":{"scale":6000000},"3575":{"scale":10000000},"3411":{"scale":24800000}}
+
+
 def main():
     style = os.path.dirname(os.path.abspath(__file__))+"/osm.xml"
     dir = "tiles"
     type = "png"
-    scale = 6000000
+    scale = p[SRS]["scale"]
     minzoom = 1
     maxzoom = 6
     threads = 1
     context = 3
-    
+
     parser = OptionParser()
     parser.add_option("-s", "--style", action="store", type="string", dest="style", 
                       help="path to the mapnik stylesheet xml, defaults to: "+style)
@@ -106,7 +112,7 @@ def main():
         features = []
         con = psycopg2.connect(options.dsn)
         sql = """
-        SELECT 'point' AS type, osm_id, name, ST_X(way), ST_Y(way), ST_X(ST_Transform(way, 3031)), ST_Y(ST_Transform(way, 3031)) FROM ant_point
+        SELECT 'point' AS type, osm_id, name, ST_X(way), ST_Y(way), ST_X(ST_Transform(way, SRS)), ST_Y(ST_Transform(way, SRS)) FROM ant_point
             WHERE (place IS NOT NULL AND place IN ('hamlet', 'town', 'isolated_dwelling', 'cape', 'locality', 'island', 'islet'))
             OR building IS NOT NULL
             OR aeroway IS NOT NULL
@@ -114,14 +120,14 @@ def main():
 
         UNION  ALL
 
-        SELECT 'line' AS type, osm_id, name, ST_X(ST_Centroid(way)), ST_Y(ST_Centroid(way)), ST_X(ST_Transform(ST_Centroid(way), 3031)), ST_Y(ST_Transform(ST_Centroid(way), 3031)) FROM ant_line
+        SELECT 'line' AS type, osm_id, name, ST_X(ST_Centroid(way)), ST_Y(ST_Centroid(way)), ST_X(ST_Transform(ST_Centroid(way), SRS)), ST_Y(ST_Transform(ST_Centroid(way), SRS)) FROM ant_line
             WHERE (place IS NOT NULL AND place IN ('hamlet', 'town', 'isolated_dwelling', 'cape', 'locality', 'island', 'islet'))
             OR building IS NOT NULL
             OR aeroway IS NOT NULL
 
         UNION  ALL
 
-        SELECT 'polygon' AS type, osm_id, name, ST_X(ST_Centroid(way)), ST_Y(ST_Centroid(way)), ST_X(ST_Transform(ST_Centroid(way), 3031)), ST_Y(ST_Transform(ST_Centroid(way), 3031)) FROM ant_polygon
+        SELECT 'polygon' AS type, osm_id, name, ST_X(ST_Centroid(way)), ST_Y(ST_Centroid(way)), ST_X(ST_Transform(ST_Centroid(way), SRS)), ST_Y(ST_Transform(ST_Centroid(way), SRS)) FROM ant_polygon
             WHERE (name IS NOT NULL AND place IS NOT NULL AND place IN ('hamlet', 'town', 'isolated_dwelling', 'cape', 'locality', 'island', 'islet'))
             OR building IS NOT NULL
             OR aeroway IS NOT NULL;
