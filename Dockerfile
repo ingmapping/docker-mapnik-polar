@@ -62,10 +62,7 @@ COPY ./osm-antarctica-3031.xml /root/src/mapnik-stylesheets-polar/osm-antarctica
 COPY ./osm-antarctica-3412.xml /root/src/mapnik-stylesheets-polar/osm-antarctica-3412.xml
 COPY ./northpole-3411.xml /root/src/mapnik-stylesheets-polar/northpole-3411.xml
 COPY ./northpole-3575.xml /root/src/mapnik-stylesheets-polar/northpole-3575.xml
-COPY ./render-polar-tiles-3031.py /root/src/mapnik-stylesheets-polar/render-polar-tiles-3031.py
-COPY ./render-polar-tiles-3412.py /root/src/mapnik-stylesheets-polar/render-polar-tiles-3412.py
-COPY ./render-polar-tiles-3411.py /root/src/mapnik-stylesheets-polar/render-polar-tiles-3411.py
-COPY ./render-polar-tiles-3575.py /root/src/mapnik-stylesheets-polar/render-polar-tiles-3575.py
+COPY ./render_polar_tiles.py /root/src/mapnik-stylesheets-polar/render_polar_tiles.py
 COPY ./view-3031.html /root/src/mapnik-stylesheets-polar/view-3031.html
 COPY ./view-3412.html /root/src/mapnik-stylesheets-polar/view-3412.html
 COPY ./view-3411.html /root/src/mapnik-stylesheets-polar/view-3411.html
@@ -76,7 +73,7 @@ ENV PGUSER=postgres
 ENV PGHOST=postgis
 
 ENV PBFFile=antarctica-latest.osm.pbf
-ENV MIN_ZOOM=0
+ENV MIN_ZOOM=1
 ENV MAX_ZOOM=7
 ENV SRS=3412
 ENV STYLESHEET=osm-antarctica 
