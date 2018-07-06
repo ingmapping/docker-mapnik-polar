@@ -13,8 +13,8 @@ Proj4js.defs["EPSG:3031"] = "+proj=stere +lat_0=-90 +lat_ts=-71 +lon_0=0 +k=1 +x
 OriginX: -3000000
 OriginY: 3000000
 Chosen Map Extent: -3000000, -3000000, 3000000, 30000000 #Based on zoom to antarctica
-Scale: 6000000  #From originX to origin Y 
-Resolution: 23437.5  #((-OriginX)*2)/256 where 256 is the tile size
+Scale: 6000000   
+Resolution: 23437.5  
 
 2) NSIDC Sea Ice Polar Stereographic South - EPSG:3412
 
@@ -29,8 +29,8 @@ Proj4js.defs["EPSG:3412"] = "+proj=stere +lat_0=-90 +lat_ts=-70 +lon_0=0 +k=1 +x
 OriginX: -3000000
 OriginY: 3000000
 Chosen Map Extent: -3000000, -3000000, 3000000, 30000000 #Based on zoom to antarctica
-Scale: 6000000 #From originX to origin Y 
-Resolution: 23437.5  #((-OriginX)*2)/256 where 256 is the tile size
+Scale: 6000000 
+Resolution: 23437.5  
 
 3) WGS 84 / North Pole LAEA Europe - EPSG:3575
 
@@ -45,8 +45,8 @@ Proj4js.defs["EPSG:3575"] = "+proj=laea +lat_0=90 +lon_0=10 +x_0=0 +y_0=0 +ellps
 OriginX: -5000000
 OriginY: 5000000
 Chosen Map Extent: -5000000, -5000000, 5000000, 50000000 #Based on zoom to sea ice extent (max) 
-Scale: 10000000 #From originX to origin Y 
-Resolution: 39062.5  #((-OriginX)*2)/256 where 256 is the tile size
+Scale: 10000000 
+Resolution: 39062.5  
 
 4) NSIDC Sea Ice Polar Stereographic North - EPSG:3411
 
@@ -61,7 +61,7 @@ Proj4js.defs["EPSG:3411"] = "+proj=stere +lat_0=90 +lat_ts=70 +lon_0=-45 +k=1 +x
 OriginX: -12400000
 OriginY: 12400000
 Chosen Map Extent: -12400000, -12400000, 12400000, 12400000 #Based on full extent of the projection 
-Scale: 24800000 #From originX to origin Y 
-Resolution: 96875  #((-OriginX)*2)/256 where 256 is the tile size
+Scale: 24800000  
+Resolution: 96875  
 
 
