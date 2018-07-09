@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map [
+<!ENTITY % entities SYSTEM "inc/entities.xml.inc">
+%entities;
+]>
+<Map background-color="#b5d0d0" srs="&srs28992;" minimum-version="2.0.0">
+
+<FontSet name="book-fonts">
+  <Font face-name="DejaVu Sans Book" />
+  <Font face-name="Unifont Medium" />
+</FontSet>
+<FontSet name="bold-fonts">
+  <Font face-name="DejaVu Sans Bold" />
+  <Font face-name="Unifont Medium" />
+</FontSet>
+<FontSet name="oblique-fonts">
+  <Font face-name="DejaVu Sans Oblique" />
+  <Font face-name="Unifont Medium" />
+</FontSet>
+
+&layer-shapefiles;
+
+</Map>

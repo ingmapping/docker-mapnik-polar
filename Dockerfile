@@ -15,7 +15,7 @@ RUN apt-get update -y \
 
 RUN mkdir ~/src \
     && cd ~/src \
-    && git clone git://github.com/openstreetmap/osm2pgsql.git \
+    && git clone https://github.com/openstreetmap/osm2pgsql \
     && cd osm2pgsql \
     && mkdir build && cd build \
     && cmake .. \
@@ -30,7 +30,7 @@ RUN python -c 'import mapnik'
 
 # Install mapnik-stylesheets-polar and additional shapefiles 
 RUN cd ~/src \
-    && git clone git://github.com/ingmapping/mapnik-stylesheets-polar.git \
+    && git clone https://github.com/ingmapping/mapnik-stylesheets-polar \
     && cd mapnik-stylesheets-polar/data \
     && wget http://data.openstreetmapdata.com/land-polygons-complete-4326.zip \
     && wget http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places.zip \
@@ -58,15 +58,18 @@ RUN apt-get install -y ttf-unifont ttf-dejavu
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh 
 RUN chmod a+rx /docker-entrypoint.sh 
 
-COPY ./osm-antarctica-3031.xml /root/src/mapnik-stylesheets-polar/osm-antarctica-3031.xml
-COPY ./osm-antarctica-3412.xml /root/src/mapnik-stylesheets-polar/osm-antarctica-3412.xml
-COPY ./northpole-3411.xml /root/src/mapnik-stylesheets-polar/northpole-3411.xml
-COPY ./northpole-3575.xml /root/src/mapnik-stylesheets-polar/northpole-3575.xml
+COPY stylesheets/style-3031.xml /root/src/mapnik-stylesheets-polar/style-3031.xml
+COPY stylesheets/style-3412.xml /root/src/mapnik-stylesheets-polar/style-3412.xml
+COPY stylesheets/style-3411.xml /root/src/mapnik-stylesheets-polar/style-3411.xml
+COPY stylesheets/style-3575.xml /root/src/mapnik-stylesheets-polar/style-3575.xml
+
+COPY ./entities.xml.inc /root/src/mapnik-stylesheets-polar/inc/entities.xml.inc
 COPY ./render_polar_tiles.py /root/src/mapnik-stylesheets-polar/render_polar_tiles.py
-COPY ./view-3031.html /root/src/mapnik-stylesheets-polar/view-3031.html
-COPY ./view-3412.html /root/src/mapnik-stylesheets-polar/view-3412.html
-COPY ./view-3411.html /root/src/mapnik-stylesheets-polar/view-3411.html
-COPY ./view-3575.html /root/src/mapnik-stylesheets-polar/view-3575.html
+
+COPY viewers/view-3031.html /root/src/mapnik-stylesheets-polar/view-3031.html
+COPY viewers/view-3412.html /root/src/mapnik-stylesheets-polar/view-3412.html
+COPY viewers/view-3411.html /root/src/mapnik-stylesheets-polar/view-3411.html
+COPY viewers/view-3575.html /root/src/mapnik-stylesheets-polar/view-3575.html
 
 ENV PGPASSWORD=mysecretpassword 
 ENV PGUSER=postgres
@@ -75,8 +78,7 @@ ENV PGHOST=postgis
 ENV PBFFile=antarctica-latest.osm.pbf
 ENV MIN_ZOOM=1
 ENV MAX_ZOOM=7
-ENV SRS=3412
-ENV STYLESHEET=osm-antarctica 
+ENV SRS=3412 
 
 ENTRYPOINT /docker-entrypoint.sh
 

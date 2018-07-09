@@ -31,7 +31,7 @@ else
 fi
 
 # Mapnik generate polar tiles settings
-export MAPNIK_MAP_FILE=/root/src/mapnik-stylesheets-polar/osm-antarctica-${SRS}.xml
+export MAPNIK_MAP_FILE=/root/src/mapnik-stylesheets-polar/style-${SRS}.xml
 export MAPNIK_TILE_DIR=/data/tiles-${SRS}
 mkdir -p ${MAPNIK_TILE_DIR}
 chmod -R 777 ${MAPNIK_TILE_DIR}
@@ -42,5 +42,5 @@ cp /root/src/mapnik-stylesheets-polar/view-${SRS}.html /data/tiles-${SRS}
 
 # Generate polar tiles 
 echo "`date +"%Y-%m-%d %H:%M:%S"` Generating polar tiles in polar projection 'EPSG-${SRS}' and exporting them to the data/tiles folder"
-python /root/src/mapnik-stylesheets-polar/render_polar_tiles.py --style=/root/src/mapnik-stylesheets-polar/${STYLESHEET}-${SRS}.xml --dir=${MAPNIK_TILE_DIR} --minzoom=${MIN_ZOOM} --maxzoom=${MAX_ZOOM}
+python /root/src/mapnik-stylesheets-polar/render_polar_tiles.py --style=/root/src/mapnik-stylesheets-polar/style-${SRS}.xml --dir=${MAPNIK_TILE_DIR} --minzoom=${MIN_ZOOM} --maxzoom=${MAX_ZOOM}
 
