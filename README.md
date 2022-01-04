@@ -5,7 +5,9 @@ Related project: [mapnik-stylesheets-polar](https://github.com/ingmapping/mapnik
 
 <img src="https://github.com/ingmapping/mapnik-stylesheets-polar/blob/master/demo.gif" width="250">
 
-[View demo of antarctica basemap in polar projection EPSG:3031](https://tileserver.ingmapping.com/osm_antarctica/index.html)
+[View demo of antarctica basemap in polar projection EPSG:3031](https://ingmapping.xyz/tileserver/osm_antarctica/index.html)
+
+You can also download the already ready to use generated tiles: [Download here](https://ingmapping.xyz/tileserver/osm_antarctica/tiles.zip)
 
 ## Introduction  
 
@@ -109,4 +111,4 @@ exit
 
 Once that you have your tiles exported in a folder directory structure, you can use/view the generated raster tiles using various JavaScript mapping libraries. OpenLayers can handle custom projections out of the box, and Leaflet with the [Proj4Leafletplugin](https://kartena.github.io/Proj4Leaflet/). For configuration settings for the viewer see: [polar_projections.txt](https://github.com/ingmapping/docker-mapnik-polar/blob/master/polar_projections.txt)
 
-[OpenLayers demo viewer of antarctica basemap in polar projection EPSG:3031](https://tileserver.ingmapping.com/osm_antarctica/index.html)
+[OpenLayers demo viewer of antarctica basemap in polar projection EPSG:3031](https://ingmapping.xyz/tileserver/osm_antarctica/index.html)
